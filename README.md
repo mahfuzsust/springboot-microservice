@@ -36,7 +36,7 @@ nohup java -jar zuul-server/build/libs/zuul-server-0.0.1-SNAPSHOT.jar &
 
 ## Eureka dashboard
 <p>Default eureka port: 8761</p>
-Open a browser to go to [http://localhost:8761](http://localhost:8761) 
+Open a browser to go to http://localhost:8761
 
 ## Zuul proxy
 
