@@ -1,0 +1,20 @@
+zuul:
+  prefix: /api
+  routes:
+    rating-server:
+      path: /rating-server/**
+      serviceId: RATING-SERVICE
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
+
+server:
+  port: 9999
+
+spring:
+  application:
+    name: zuul-server
