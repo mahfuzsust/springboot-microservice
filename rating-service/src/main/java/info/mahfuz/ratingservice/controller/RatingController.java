@@ -1,6 +1,7 @@
 package info.mahfuz.ratingservice.controller;
 
 import info.mahfuz.ratingservice.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +14,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/rating")
 public class RatingController {
+    @Autowired
+    private RestTemplate restTemplate;
+
     private List<Rating> ratings = new ArrayList<>();
-    private RestTemplate restClient = new RestTemplate();
 
     public RatingController() {
         this.ratings.add(new Rating(1,5, 1, 1));
@@ -34,8 +37,8 @@ public class RatingController {
             RatingResponse resp = new RatingResponse();
             resp.setId(rating.getId());
             resp.setRating(rating.getRating());
-            resp.setUser(restClient.getForObject("http://localhost:9003/user/get/" + rating.getUserId(), User.class));
-            resp.setBook(restClient.getForObject("http://localhost:9001/book/get/" + rating.getBookId(), Book.class));
+            resp.setUser(restTemplate.getForObject("http://user-service/user/get/" + rating.getUserId(), User.class));
+            resp.setBook(restTemplate.getForObject("http://book-service/book/get/" + rating.getBookId(), Book.class));
 
             responseList.add(resp);
         });
