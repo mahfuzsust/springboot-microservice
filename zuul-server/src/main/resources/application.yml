@@ -1,9 +1,9 @@
-zuul:
-  prefix: /api
-  routes:
-    rating-server:
-      path: /rating-server/**
-      serviceId: RATING-SERVICE
+server:
+  port: 9999
+
+spring:
+  application:
+    name: zuul-server
 
 eureka:
   client:
@@ -12,9 +12,18 @@ eureka:
     instance:
       hostname: localhost
 
-server:
-  port: 9999
+zuul:
+  prefix: /api
+  routes:
+    rating-server:
+      path: /rating-server/**
+      serviceId: RATING-SERVICE
 
-spring:
-  application:
-    name: zuul-server
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
