@@ -1,14 +1,22 @@
 package info.mahfuz.bookservice.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "book")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "name")
     private String name;
 
     public Book() {
     }
 
-    public Book(int id, String name) {
-        this.id = id;
+    public Book(String name) {
         this.name = name;
     }
 

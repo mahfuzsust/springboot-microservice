@@ -18,6 +18,9 @@ zuul:
     rating-server:
       path: /rating-server/**
       serviceId: RATING-SERVICE
+    book-server:
+      path: /book-server/**
+      serviceId: BOOK-SERVICE
 
 hystrix:
   command:
